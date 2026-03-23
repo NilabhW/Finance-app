@@ -1,0 +1,107 @@
+.tx-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  border-left: 4px solid transparent;
+  transition: box-shadow 0.15s;
+}
+.tx-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.tx-card--income  { border-left-color: #16a34a; }
+.tx-card--expense { border-left-color: #dc2626; }
+
+.tx-card__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.tx-card__icon {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.tx-card__info { min-width: 0; }
+.tx-card__title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.recurring-badge {
+  font-size: 10px;
+  padding: 1px 6px;
+  background: #eff6ff;
+  color: #2563eb;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.tx-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+.tx-card__category,
+.tx-card__date,
+.tx-card__dot {
+  font-size: 12px;
+  color: #9ca3af;
+}
+.tx-card__notes {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tx-card__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.tx-card__amount {
+  font-size: 15px;
+  font-weight: 600;
+}
+.amount--income  { color: #16a34a; }
+.amount--expense { color: #dc2626; }
+
+.tx-card__delete {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s, color 0.15s;
+}
+.tx-card:hover .tx-card__delete { opacity: 1; }
+.tx-card__delete:hover {
+  background: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
