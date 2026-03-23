@@ -1,0 +1,86 @@
+.budget-page-header { margin-bottom: 24px; }
+.budget-page-header h1 { font-size: 24px; font-weight: 600; color: #1a1a1a; }
+.budget-page-header p  { font-size: 14px; color: #6b7280; margin-top: 4px; }
+
+.budget-set-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.budget-set-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.budget-set-row { display: flex; gap: 10px; }
+.budget-set-input {
+  flex: 1;
+  padding: 9px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1a1a1a;
+  transition: border-color 0.15s;
+}
+.budget-set-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+.budget-save-btn {
+  padding: 9px 20px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.budget-save-btn:hover { background: #1d4ed8; }
+
+.category-breakdown {
+  margin-top: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+}
+.category-breakdown h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+}
+.breakdown-list { display: flex; flex-direction: column; gap: 16px; }
+.breakdown-item__top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.breakdown-item__name   { font-size: 13px; font-weight: 500; color: #374151; }
+.breakdown-item__amount { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+.breakdown-bar__wrap {
+  height: 6px;
+  background: #f3f4f6;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 3px;
+}
+.breakdown-bar__fill {
+  height: 100%;
+  background: #2563eb;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.breakdown-item__pct { font-size: 11px; color: #9ca3af; }
+
+@media (max-width: 600px) {
+  .budget-set-row { flex-direction: column; }
+}

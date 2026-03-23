@@ -1,0 +1,62 @@
+.budget-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+}
+.budget-card--empty {
+  text-align: center;
+  color: #9ca3af;
+  padding: 24px;
+}
+.budget-card--empty p { font-size: 14px; font-weight: 500; color: #6b7280; }
+.budget-card--empty span { font-size: 12px; }
+.budget-card--compact { padding: 14px; border-radius: 10px; }
+
+.budget-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.budget-card__title { font-size: 14px; font-weight: 500; color: #1a1a1a; }
+.budget-card__status {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.status--good    { background: #f0fdf4; color: #16a34a; }
+.status--warning { background: #fffbeb; color: #d97706; }
+.status--over    { background: #fef2f2; color: #dc2626; }
+
+/* Progress bar */
+.budget-bar__wrap {
+  height: 8px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.budget-bar__fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+.bar--good    { background: #16a34a; }
+.bar--warning { background: #d97706; }
+.bar--over    { background: #dc2626; }
+
+/* Numbers row */
+.budget-card__numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+.budget-num { display: flex; flex-direction: column; gap: 3px; }
+.budget-num--center { text-align: center; }
+.budget-num--right  { text-align: right; }
+.budget-num__label  { font-size: 11px; color: #9ca3af; text-transform: uppercase; letter-spacing: .04em; }
+.budget-num__value  { font-size: 15px; font-weight: 600; color: #1a1a1a; }
+.val--danger { color: #dc2626; }
+.val--good   { color: #16a34a; }

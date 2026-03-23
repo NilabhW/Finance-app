@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom'
 import { useTransactions } from '../../hooks/useTransactions'
+import { useBudget } from '../../hooks/useBudget'
+import BudgetCard from '../../components/BudgetCard'
 import TransactionCard from '../../components/TransactionCard'
 import { formatINR } from '../../utils/currencyFormatter'
 import './Dashboard.css'
 
 export default function Dashboard() {
   const { transactions, totals } = useTransactions()
+  const budget = useBudget()
 
   // Show only the 5 most recent transactions
   const recentTransactions = transactions.slice(0, 5)
@@ -35,6 +38,15 @@ export default function Dashboard() {
           <span className="dash-card__label">Transactions</span>
           <span className="dash-card__value">{transactions.length}</span>
         </div>
+      </div>
+
+      {/* Budget widget */}
+      <div className="dash-section" style={{ marginBottom: '24px' }}>
+        <div className="dash-section-header">
+          <h2>Budget</h2>
+          <Link to="/budget">Manage →</Link>
+        </div>
+        <BudgetCard budget={budget} compact />
       </div>
 
       {/* Recent transactions */}
