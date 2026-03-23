@@ -1,58 +1,79 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
-// 1. Create the context object
 const FinanceContext = createContext()
 
-// 2. The Provider component — wraps the whole app
-export function FinanceProvider({ children }) {
-  const [transactions, setTransactions] = useState([])
-  const [budget, setBudget] = useState({ monthlyBudget: 0 })
+// Helper: safely read from localStorage
+function loadFromStorage(key, fallback) {
+  try {
+    const stored = localStorage.getItem(key)
+    return stored ? JSON.parse(stored) : fallback
+  } catch {
+    return fallback
+  }
+}
 
-  // Add a new transaction to the top of the list
+export function FinanceProvider({ children }) {
+  // Initialise state FROM localStorage instead of empty defaults
+  const [transactions, setTransactions] = useState(() =>
+    loadFromStorage('finance_transactions', [])
+  )
+  const [budget, setBudget] = useState(() =>
+    loadFromStorage('finance_budget', { monthlyBudget: 0 })
+  )
+
+  // Save to localStorage whenever transactions changes
+  useEffect(() => {
+    localStorage.setItem('finance_transactions', JSON.stringify(transactions))
+  }, [transactions])
+
+  // Save to localStorage whenever budget changes
+  useEffect(() => {
+    localStorage.setItem('finance_budget', JSON.stringify(budget))
+  }, [budget])
+
   function addTransaction(data) {
-    const newTransaction = {
-      ...data,
-      id: uuidv4(),
-    }
+    const newTransaction = { ...data, id: uuidv4() }
     setTransactions(prev => [newTransaction, ...prev])
   }
 
-  // Remove a transaction by its ID
   function deleteTransaction(id) {
     setTransactions(prev => prev.filter(tx => tx.id !== id))
   }
 
-  // Update a specific transaction — merges new data into old
   function updateTransaction(id, updatedData) {
     setTransactions(prev =>
       prev.map(tx => (tx.id === id ? { ...tx, ...updatedData } : tx))
     )
   }
 
-  // Set or update the monthly budget amount
   function updateBudget(amount) {
     setBudget({ monthlyBudget: Number(amount) })
   }
 
-  // 3. Everything in this value object is accessible app-wide
-  const contextValue = {
-    transactions,
-    addTransaction,
-    deleteTransaction,
-    updateTransaction,
-    budget,
-    updateBudget,
+  // Dev helper — clear all data (useful during testing)
+  function clearAllData() {
+    setTransactions([])
+    setBudget({ monthlyBudget: 0 })
+    localStorage.removeItem('finance_transactions')
+    localStorage.removeItem('finance_budget')
   }
 
   return (
-    <FinanceContext.Provider value={contextValue}>
+    <FinanceContext.Provider value={{
+      transactions,
+      addTransaction,
+      deleteTransaction,
+      updateTransaction,
+      budget,
+      updateBudget,
+      clearAllData,
+    }}>
       {children}
     </FinanceContext.Provider>
   )
 }
 
-// 4. Custom hook — components import this, not FinanceContext directly
 export function useFinance() {
   const context = useContext(FinanceContext)
   if (!context) {

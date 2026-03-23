@@ -52,3 +52,28 @@
 @media (max-width: 480px) {
   .dash-cards { grid-template-columns: 1fr; }
 }
+
+.currency-widget {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px;
+}
+.currency-label { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+.currency-row { display: flex; align-items: center; gap: 12px; }
+.currency-select {
+  padding: 7px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #374151;
+  background: #fff;
+}
+.currency-result {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+.currency-status { font-size: 13px; color: #9ca3af; }
+.currency-error  { color: #dc2626; }
